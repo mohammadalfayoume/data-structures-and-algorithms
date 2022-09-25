@@ -114,12 +114,14 @@ For example, ['Alphabet', 'alphabet', 'carrot', 'Zebra'] is correctly sorted, an
 ------------------------------------------------------------------------------------------------ */
 
 const alphabetizeBetter = (arr) => {
-  const sorted = arr.sort((a, b) => {
-    return a.localeCompare(b, undefined, { sensitivity: "base" });
-  });
-  return sorted;
-};
-
+  arr.sort((a, b) => {
+   let A= a.toUpperCase()
+   let B= b.toUpperCase()
+   console.log(A,B);
+   return A>B ? 1 : A<B ? -1 : 0
+ });
+ return arr
+}
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 8 - Stretch Goal
 
@@ -167,10 +169,12 @@ const people = [
 ];
 
 const sortPeople = (arr) => {
-  arr.sort((a, b) => {
-    return a.lastName.localeCompare(b.lastName);
-  });
-  return arr;
+  arr.sort((a,b)=>{
+    let A=a.lastName
+    let B=b.lastName
+    return A>B ? 1 : A<B ? -1 : 0
+  })
+  return arr
 };
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 11 - Stretch Goal
@@ -187,9 +191,9 @@ const sortPeopleBetter = (arr) => {
     if (a.firstName === b.firstName && a.lastName === b.lastName) {
       return a.age - b.age;
     } else if (a.lastName === b.lastName) {
-      return a.firstName.localeCompare(b.firstName);
+      return a.firstName > b.firstName ? 1 : -1
     } else {
-      return a.lastName.localeCompare(b.lastName);
+      return a.lastName > b.lasttName ? 1 : -1
     }
   });
   return arr;
@@ -218,7 +222,7 @@ const meetings = [
 ];
 
 const sortMeetingsByDay = (arr) => {
-  // Solution code here...
+  
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -232,12 +236,15 @@ You DO NOT need to use your solution to Challenge 12 in completing Challenge 13.
 ------------------------------------------------------------------------------------------------ */
 
 const sortSchedule = (arr) => {
+  let days=["Monday","Tuesday","Wednesday","Friday"]
   arr.sort((a,b)=>{
     if (a.start === b.start && a.dayOfWeek === b.dayOfWeek) {
-      return (a.end-a.start) - (b.end-b.start)
+      let A= parseInt(a.end) - parseInt(a.start)
+      let B= parseInt(b.end) - parseInt(b.start)
+      return A - B
     }
     else {
-      return a.start - b.start
+      return parseInt(a.start) - parseInt(b.start)
     }
   })
   return arr
